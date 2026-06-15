@@ -1,33 +1,39 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Carregar os dados
+# Carregar os dados do arquivo CSV
 df = pd.read_csv("historico_cripto.csv", header=None)
 
 # Nomear as colunas
 df.columns = ["Moeda", "Preço", "Data"]
 
-# Filtrar apenas o Bitcoin
+# Filtrar apenas os registros do Bitcoin
 df_bitcoin = df[df["Moeda"] == "bitcoin"]
 
-# Configurar o gráfico
-plt.figure(figsize=(10, 5))
-plt.plot(df_bitcoin["Data"], df_bitcoin["Preço"], marker='o')
+# Converter a coluna Data para formato de data/hora
+df_bitcoin["Data"] = pd.to_datetime(df_bitcoin["Data"])
 
-# Adicionar títulos e exibir
+# Criar o gráfico
+plt.figure(figsize=(10, 5))
+plt.plot(
+    df_bitcoin["Data"],
+    df_bitcoin["Preço"],
+    marker="o",
+    linewidth=2
+)
+
+# Personalização do gráfico
 plt.title("Evolução do Preço do Bitcoin")
 plt.xlabel("Data da Consulta")
 plt.ylabel("Preço em BRL")
-plt.xticks(rotation=45)  # Dois espaços antes do comentário corrigem o E261
-plt.show()
-
-# Esta linha em branco abaixo é necessária para corrigir o W292
-
-plt.title("Evolução do Preço do Bitcoin")
-plt.xlabel("Data da Consulta")
-plt.ylabel("Preço")
+plt.xticks(rotation=45)
 plt.grid(True)
 
+# Ajustar layout para não cortar textos
+plt.tight_layout()
 
+# Salvar imagem
 plt.savefig("grafico_bitcoin.png")
+
+# Exibir gráfico
 plt.show()
