@@ -22,3 +22,12 @@ plt.xticks(rotation=45)  # Dois espaços antes do comentário corrigem o E261
 plt.show()
 
 # Esta linha em branco abaixo é necessária para corrigir o W292
+
+plt.title("Evolução do Preço do Bitcoin")
+plt.xlabel("Data da Consulta")
+plt.ylabel("Preço")
+plt.grid(True)
+
+
+plt.savefig("grafico_bitcoin.png")
+plt.show()
