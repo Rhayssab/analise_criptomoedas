@@ -15,12 +15,7 @@ df_bitcoin["Data"] = pd.to_datetime(df_bitcoin["Data"])
 
 # Criar o gráfico
 plt.figure(figsize=(10, 5))
-plt.plot(
-    df_bitcoin["Data"],
-    df_bitcoin["Preço"],
-    marker="o",
-    linewidth=2
-)
+plt.plot(df_bitcoin["Data"], df_bitcoin["Preço"], marker="o", linewidth=2)
 
 # Personalização do gráfico
 plt.title("Evolução do Preço do Bitcoin")
